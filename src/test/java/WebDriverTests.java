@@ -4,6 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import java.time.Duration;
 import java.util.NoSuchElementException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -13,6 +15,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 
 public class WebDriverTests {
+    Logger logger= (Logger) LogManager.getLogger();
     WebDriver driver;
 
     @BeforeAll
@@ -52,6 +55,7 @@ public class WebDriverTests {
         driver=new FirefoxDriver(options);
 
         driver.get("https://duckduckgo.com/");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         WebElement searchString = driver.findElement(new By.ByXPath("//input[@name='q']"));
         searchString.clear();
         searchString.sendKeys("ОТУС");
@@ -68,10 +72,8 @@ public class WebDriverTests {
         FirefoxOptions options = new FirefoxOptions();
         options.addArguments("--kiosk");
         driver=new FirefoxDriver(options);
-
-
-
         driver.get("https://demo.w3layouts.com/demos_new/template_demo/03-10-2020/photoflash-liberty-demo_Free/685659620/web/index.html?_ga=2.181802926.889871791.1632394818-2083132868.1632394818");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.findElement(new By.ByXPath("//li[@data-id='id-2' and @class='portfolio-item2 content']")).click();
         WebElement modalWindow = driver.findElement(new By.ByXPath("//div[@class='pp_content_container']"));
 
@@ -83,12 +85,10 @@ public class WebDriverTests {
 
     @Test
     public void cookesTest() throws NoSuchElementException{
-        Logger logger= (Logger) LogManager.getLogger();
-
         driver = new FirefoxDriver();
         driver.manage().window().fullscreen();
-
         driver.get("https://otus.ru");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.manage().deleteAllCookies();
         driver.findElement(new By.ByXPath("//button[@class='sc-mrx253-0 enxKCy sc-945rct-0 iOoJwQ']")).click();
         WebElement loginInput = driver.findElement(new By.ByXPath("//input[@name='email']"));
