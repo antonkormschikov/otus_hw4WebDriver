@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import java.time.Duration;
 import java.util.NoSuchElementException;
 import org.openqa.selenium.By;
@@ -45,11 +44,8 @@ public class WebDriverTests {
         searchString.clear();
         searchString.sendKeys("ОТУС");
         driver.findElement(new By.ByXPath("//button[@aria-label='Search']")).click();
-        String actual =(driver.findElement(new By.ByXPath("//ol/li[1]/article//a[@href='https://otus.ru/' and @data-testid='result-title-a']/span"))).getText();
-        String expected="Онлайн‑курсы для профессионалов, дистанционное обучение современным ...";
-        Assertions.assertEquals(expected,actual);
+        Assertions.assertTrue(driver.findElement(new By.ByXPath("//ol/li[1]/article//a[@href='https://otus.ru/']/span[text()='Онлайн‑курсы для профессионалов, дистанционное обучение современным ...']")).isDisplayed());
     }
-
 
     @Test
     public void kioskTest() throws NoSuchElementException{
@@ -61,7 +57,6 @@ public class WebDriverTests {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.findElement(new By.ByXPath("//li/span/a[@href='assets/images/p3.jpg']")).click();
         WebElement modalWindow = driver.findElement(new By.ByXPath("//div[@class='pp_content_container']"));
-
         Assertions.assertTrue(modalWindow.isDisplayed());
 
     }
