@@ -40,7 +40,6 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>5.10.0</version>
-
         </dependency>
 
     </dependencies>
