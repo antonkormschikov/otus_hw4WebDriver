@@ -11,8 +11,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-
-
 public class WebDriverTests {
     Logger logger= (Logger) LogManager.getLogger();
     WebDriver driver;
@@ -64,7 +62,7 @@ public class WebDriverTests {
         driver.findElement(new By.ByXPath("//li/span/a[@href='assets/images/p3.jpg']")).click();
         WebElement modalWindow = driver.findElement(new By.ByXPath("//div[@class='pp_content_container']"));
 
-        Assertions.assertEquals(true,modalWindow.isDisplayed());
+        Assertions.assertTrue(modalWindow.isDisplayed());
 
     }
 
@@ -75,11 +73,13 @@ public class WebDriverTests {
         driver.get("https://otus.ru");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.manage().deleteAllCookies();
-        driver.findElement(new By.ByXPath("//button[@class='sc-mrx253-0 enxKCy sc-945rct-0 iOoJwQ']")).click();
+        driver.findElement(new By.ByXPath("//button[text()='Войти']")).click();
         WebElement loginInput = driver.findElement(new By.ByXPath("//input[@name='email']"));
-        loginInput.clear();loginInput.sendKeys("oxilqrxobfqlrd@hldrive.com");
+        loginInput.clear();
+        loginInput.sendKeys("oxilqrxobfqlrd@hldrive.com");
         WebElement passInput = driver.findElement(new By.ByXPath("//input[@type='password']"));
-        passInput.clear(); passInput.sendKeys("Opera-324");
+        passInput.clear();
+        passInput.sendKeys("Opera-324");
         driver.findElement(new By.ByXPath("//button/div[text()='Войти']")).click();
         logger.info(String.format("Выводим в логи Cookies с otus.ru %s", driver.manage().getCookies().toString()));
     }
