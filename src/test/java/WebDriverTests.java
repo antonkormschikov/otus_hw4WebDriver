@@ -11,8 +11,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class WebDriverTests {
-    Logger logger= (Logger) LogManager.getLogger();
-    WebDriver driver;
+    private final Logger logger= (Logger) LogManager.getLogger();
+    private WebDriver driver;
 
     @BeforeAll
     public static void setup() {
